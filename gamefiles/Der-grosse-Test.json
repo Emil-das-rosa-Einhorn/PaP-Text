@@ -1,6 +1,68 @@
 {
     "Version": "v1.0",
     "titel": "der große Test",
+    "Character_profiles": {
+        "1": {
+            "HP": 100,
+            "EP": 50,
+            "Strength": 2,
+            "Constitution": 1,
+            "Dexterity": 4,
+            "Wisdom": 5,
+            "Intelligence": 5,
+            "Charisma": 3
+        },
+        "2": {
+            "HP": 70,
+            "EP": 100,
+            "Strength": 5,
+            "Constitution": 5,
+            "Dexterity": 2,
+            "Wisdom": 1,
+            "Intelligence": 2,
+            "Charisma": 4
+        },
+        "3": {
+            "HP": 100,
+            "EP": 50,
+            "Strength": 3,
+            "Constitution": 3,
+            "Dexterity": 2,
+            "Wisdom": 4,
+            "Intelligence": 1,
+            "Charisma": 5
+        },
+        "4": {
+            "HP": 30,
+            "EP": 20,
+            "Strength": 5,
+            "Constitution": 1,
+            "Dexterity": 5,
+            "Wisdom": 5,
+            "Intelligence": 5,
+            "Charisma": 5
+        },
+        "5": {
+            "HP": 30,
+            "EP": 20,
+            "Strength": 5,
+            "Constitution": 1,
+            "Dexterity": 5,
+            "Wisdom": 5,
+            "Intelligence": 5,
+            "Charisma": 5
+        },
+        "6": {
+            "HP": 30,
+            "EP": 20,
+            "Strength": 5,
+            "Constitution": 1,
+            "Dexterity": 5,
+            "Wisdom": 5,
+            "Intelligence": 5,
+            "Charisma": 5
+        }
+    },
     "content": {
         "1": {
             "plot": "Du erwachst in den feuchten Katakomben einer alten Ruine. In deiner Hand glimmt eine schwindende Fackel. Vor dir teilen sich die muffigen Gänge in zwei Richtungen, während hinter dir Steine herabfallen und den Rückweg versperren.",
