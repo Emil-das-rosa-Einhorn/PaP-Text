@@ -2,7 +2,7 @@
 "titel": "der große Test",
 "content":{
     1: {
-        "plot": f"Du erwachst in den feuchten Katakomben einer alten Ruine. In deiner Hand glimmt eine schwindende Fackel. Vor dir teilen sich die muffigen Gänge in zwei Richtungen, während hinter dir Steine herabfallen und den Rückweg versperren.",
+        "plot": "Du erwachst in den feuchten Katakomben einer alten Ruine. In deiner Hand glimmt eine schwindende Fackel. Vor dir teilen sich die muffigen Gänge in zwei Richtungen, während hinter dir Steine herabfallen und den Rückweg versperren.",
         "choices": {
             "A": ["Dem kühlen Luftzug nach links folgen.", 2],
             "B": ["Dem schwachen Glühen von Runen nach rechts folgen.", 3]
