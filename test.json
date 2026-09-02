@@ -1,72 +1,73 @@
-"Version": "v1.0",
-"titel": "der große Test",
-"content":{
-    1: {
-        "plot": "Du erwachst in den feuchten Katakomben einer alten Ruine. In deiner Hand glimmt eine schwindende Fackel. Vor dir teilen sich die muffigen Gänge in zwei Richtungen, während hinter dir Steine herabfallen und den Rückweg versperren.",
-        "choices": {
-            "A": ["Dem kühlen Luftzug nach links folgen.", 2],
-            "B": ["Dem schwachen Glühen von Runen nach rechts folgen.", 3]
+{
+    "Version": "v1.0",
+    "titel": "der große Test",
+    "content": {
+        "1": {
+            "plot": "Du erwachst in den feuchten Katakomben einer alten Ruine. In deiner Hand glimmt eine schwindende Fackel. Vor dir teilen sich die muffigen Gänge in zwei Richtungen, während hinter dir Steine herabfallen und den Rückweg versperren.",
+            "choices": {
+                "A": ["Dem kühlen Luftzug nach links folgen.", 2],
+                "B": ["Dem schwachen Glühen von Runen nach rechts folgen.", 3]
+            }
+        },
+        "2": {
+            "plot": "Der Gang führt dich an ein unterirdisches Flussufer. Das Wasser strömt reißend in die Dunkelheit. Am Ufer liegt ein altes, morsch wirkendes Holzboot.",
+            "choices": {
+                "A": ["In das Boot steigen und dich treiben lassen.", 4],
+                "B": ["Einen schmalen Pfad entlang des Felsufers suchen.", 5]
+            }
+        },
+        "3": {
+            "plot": "Du erreichst eine Kammer voller leuchtender Glyphen. In der Mitte steht eine steinerne Truhe, flankiert von zwei schweren Eichentüren.",
+            "choices": {
+                "A": ["Die Truhe öffnen.", 6],
+                "B": ["Die linke Tür mit dem Sonnen-Symbol öffnen.", 5],
+                "C": ["Die rechte Tür mit dem Mond-Symbol öffnen.", 7]
+            }
+        },
+        "4": {
+            "plot": "Das Boot gerät in eine wilde Stromschnelle und stürzt einen unterirdischen Wasserfall hinab. Du wirst an das Licht gedrängt und spülst an der Küste einer sonnigen Insel an.",
+            "choices": {
+                "A": ["END", 10, "Ende 1 (Guter Ausgang): Du hast die Katakomben überlebt und findest ein neues Leben in Freiheit."]
+            }
+        },
+        "5": {
+            "plot": "Der Weg führt dich in eine riesige Höhle voller schlafender Schattenkreaturen. Jeder Schritt könnte dein letzter sein.",
+            "choices": {
+                "A": ["Schleichst du leise an den Wesen vorbei.", 8],
+                "B": ["Versuchst du, mit der Fackel ein Feuer zur Abwehr zu entzünden.", 9]
+            }
+        },
+        "6": {
+            "plot": "Aus der Truhe steigt giftiges Purpurgas auf. Es gibt kein Entkommen aus dem geschlossenen Raum.",
+            "choices": {
+                "A": ["END", 11, "Das ist ja nicht so gut gelaufen. Aber vieleicht klappt es ja beim nächsten mal."]
+            }
+        },
+        "7": {
+            "plot": "Hinter der Mond-Tür findest du ein altes Teleportationsportal. Es pulsiert in hellem Blau und scheint stabil zu sein.",
+            "choices": {
+                "A": ["Trete in das Portal.", 4],
+                "B": ["Zögere und suche stattdessen einen anderen Ausweg.", 5]
+            }
+        },
+        "8": {
+            "plot": "Mit viel Geduld schleichtst du an den Kreaturen vorbei und erreichst ein gewaltiges Steintor, hinter dem Tageslicht scheint.",
+            "choices": {
+                "A": ["Das Tor durchschreiten.", 10],
+                "B": ["Du zögert und suchst stattdessen einen anderen Ausweg.", 5]
+            }
+        },
+        "9": {
+            "plot": "Das Feuer weckt die Kreaturen auf. Binnen Sekunden umzingeln sie dich in der Dunkelheit.",
+            "choices": {
+                "A": ["END", 11, "Schade. Aber vieleicht ereichst du das nächste Mal das Licht."]
+            }
+        },
+        "10": {
+            "plot": "Du erreichst die Freiheit, doch eine magische Fluch-Glyphe an deinem Arm beginnt zu brennen. Du bist frei, wirst aber von den Geistern der Ruine ewig verfolgt.",
+            "choices": {
+                "A": ["END", 11, "Ein täurer Preis für die Abenteuerlust, vieleicht hast du das nächste Mal mehr Glück."]
+            }
         }
-    },
-    2: {
-        "plot": "Der Gang führt dich an ein unterirdisches Flussufer. Das Wasser strömt reißend in die Dunkelheit. Am Ufer liegt ein altes, morsch wirkendes Holzboot.",
-        "choices": {
-            "A": ["In das Boot steigen und dich treiben lassen.", 4],
-            "B": ["Einen schmalen Pfad entlang des Felsufers suchen.", 5]
-        }
-    },
-    3: {
-        "plot": "Du erreichst eine Kammer voller leuchtender Glyphen. In der Mitte steht eine steinerne Truhe, flankiert von zwei schweren Eichentüren.",
-        "choices": {
-            "A": ["Die Truhe öffnen.", 6],
-            "B": ["Die linke Tür mit dem Sonnen-Symbol öffnen.", 5],
-            "C": ["Die rechte Tür mit dem Mond-Symbol öffnen.", 7]
-        }
-    },
-    4: {
-        "plot": "Das Boot gerät in eine wilde Stromschnelle und stürzt einen unterirdischen Wasserfall hinab. Du wirst an das Licht gedrängt und spülst an der Küste einer sonnigen Insel an.",
-        "choices": {
-            "A": ["END", 10, "Ende 1 (Guter Ausgang): Du hast die Katakomben überlebt und findest ein neues Leben in Freiheit."]
-        }
-    },
-    5: {
-        "plot": "Der Weg führt dich in eine riesige Höhle voller schlafender Schattenkreaturen. Jeder Schritt könnte dein letzter sein.",
-        "choices": {
-            "A": ["Schleichst du leise an den Wesen vorbei.", 8],
-            "B": ["Versuchst du, mit der Fackel ein Feuer zur Abwehr zu entzünden.", 9]
-        }
-    },
-    6: {
-        "plot": "Aus der Truhe steigt giftiges Purpurgas auf. Es gibt kein Entkommen aus dem geschlossenen Raum.",
-        "choices": {
-            "A": ["END", 11, "Das ist ja nicht so gut gelaufen. Aber vieleicht klappt es ja beim nächsten mal."]
-        }
-    },
-    7: {
-        "plot": "Hinter der Mond-Tür findest du ein altes Teleportationsportal. Es pulsiert in hellem Blau und scheint stabil zu sein.",
-        "choices": {
-            "A": ["Trete in das Portal.", 4],
-            "B": ["Zögere und suche stattdessen einen anderen Ausweg.", 5]
-        }
-    },
-    8: {
-        "plot": "Mit viel Geduld schleichtst du an den Kreaturen vorbei und erreichst ein gewaltiges Steintor, hinter dem Tageslicht scheint.",
-        "choices": {
-            "A": ["Das Tor durchschreiten.", 10],
-            "B": ["Du zögert und suchst stattdessen einen anderen Ausweg.", 5]
-        }
-    },
-    9: {
-        "plot": "Das Feuer weckt die Kreaturen auf. Binnen Sekunden umzingeln sie dich in der Dunkelheit.",
-        "choices": {
-            "A": ["END", 11, "Schade. Aber vieleicht ereichst du das nächste Mal das Licht."]
-        }
-    },
-    10: {
-        "plot": "Du erreichst die Freiheit, doch eine magische Fluch-Glyphe an deinem Arm beginnt zu brennen. Du bist frei, wirst aber von den Geistern der Ruine ewig verfolgt.",
-        "choices": {
-            "A": ["END", 11, "Ein täurer Preis für die Abenteuerlust, vieleicht hast du das nächste Mal mehr Glück."]
-        }
-    }
     }
 }
