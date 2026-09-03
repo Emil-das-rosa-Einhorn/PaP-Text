@@ -5,7 +5,16 @@ import os
 Name = "Edward"
 difficulty = 5
 dice_roll = 0
-Character_stats = {}
+Character_stats = {"HP": None,
+            "EP": None,
+            "Strength": None,
+            "Constitution": None,
+            "Dexterity": None,
+            "Wisdom": None,
+            "Intelligence": None,
+            "Charisma": None,
+            "Backstory": "You are the Story to be told"
+}
 Character_profiles = {}
 story = {}
 title = "no Game loaded"
@@ -165,12 +174,17 @@ def menu ():
         elif choice == "B":
             menu_B()
         elif choice == "C":
-            menu_C()
+            if Character_profiles == {}:
+                print ("Please load a Game first!")
+                sleep (ui_wait_time)
+                os.system("cls" if os.name == "nt" else "clear")
+            else:
+                menu_C()
         elif choice == "D":
             while True:
                 global difficulty
                 print (header)
-                print (f"Please Input the Difficulty Level you whant to Play at [currently: {difficulty}]")
+                print (f"Please Input the Difficulty Level you want to Play at [currently: {difficulty}]")
                 print ("1 - 3: Easy | 4 - 7: Mid | 8 - 10: Hard")
                 inp = input ("Difficulty Level: ")
                 try:
@@ -181,7 +195,7 @@ def menu ():
                         sleep(ui_wait_time)
                     else:
                         os.system("cls" if os.name == "nt" else "clear")
-                        print (f"Difficulty Levelwas set to: {difficulty}")
+                        print (f"Difficulty Level was set to: {difficulty}")
                         sleep(ui_wait_time)
                         break
                 except ValueError:
@@ -228,9 +242,96 @@ def menu_B():
         os.system("cls" if os.name == "nt" else "clear")
 
 def menu_C():
-    pass
+    global Character_profiles, Character_stats, Name
+    while True:
+        print (header)
+        print ("Loaded Profile")
+        print ("-"*50)
+        print (f"Name: {Name}")
+        print (f"HP: {Character_stats["HP"]}")
+        print (f"EP: {Character_stats["EP"]}")
+        print (f"Strength: {Character_stats["Strength"]}")
+        print (f"Constitution: {Character_stats["Constitution"]}")
+        print (f"Dexterity: {Character_stats["Dexterity"]}")
+        print (f"Wisdom: {Character_stats["Wisdom"]}")
+        print (f"Intelligence: {Character_stats["Intelligence"]}")
+        print (f"Charisma: {Character_stats["Charisma"]}")
+        print (f"Backstory: {Character_stats["Backstory"]}")
+        print ("-"*50)
+        print ("A: Character Name")
+        print ("B: Character Profile")
+        print ("C: Exit")
+        print (footer)
+        choice = input ("Please chose an Option: ").upper()
+        os.system("cls" if os.name == "nt" else "clear")
+        if choice == "A":
+            Name = input ("Please Typ in your Charakter Name: ")
+        elif choice == "B":
+            while True:
+                print (header)
+                print ("charakters")
+                print ("-"*50)
+                char_numbers = []
+                for key in Character_profiles:
+                    char_numbers.append(key)
+                    print (f"Charakter {key}")
+                    print (f"HP: {Character_profiles[key]["HP"]}")
+                    print (f"EP: {Character_profiles[key]["EP"]}")
+                    print (f"Strength: {Character_profiles[key]["Strength"]}")
+                    print (f"Constitution: {Character_profiles[key]["Constitution"]}")
+                    print (f"Dexterity: {Character_profiles[key]["Dexterity"]}")
+                    print (f"Wisdom: {Character_profiles[key]["Wisdom"]}")
+                    print (f"Intelligence: {Character_profiles[key]["Intelligence"]}")
+                    print (f"Charisma: {Character_profiles[key]["Charisma"]}")
+                    print (f"Backstory: {Character_profiles[key]["Backstory"]}")
+                    print ("-"*50)
+                print ("A: Chose a Character")
+                print ("B: Random")
+                print ("C: Exit")
+                choice = input("Please select a Option: ").upper()
+                os.system("cls" if os.name == "nt" else "clear")
+                if choice == "A":
+                    charakter = input("Chose your Character by typing in the Character Number: ")
+                    if charakter in char_numbers:
+                        load_in_character (charakter)
+                        break
+                    else:
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print ("Invalid Choice!")
+                        print ("Chose your Character by typing in the Character Number")
+                        sleep (ui_wait_time)
+                elif choice == "B":
+                    charakter = random.choice(char_numbers)
+                    load_in_character (charakter)
+                    os.system("cls" if os.name == "nt" else "clear")
+                    break
+                elif choice == "C":
+                    os.system("cls" if os.name == "nt" else "clear")
+                    break
+                else:
+                    os.system("cls" if os.name == "nt" else "clear")
+                    print ("Invalid Choice!")
+                    print ("Chose your Character by typing in the Character Number")
+                    sleep (ui_wait_time)
 
+        elif choice == "C":
+            break
+        else:
+            print ("Please select a Option")
+            sleep (ui_wait_time)
+            os.system("cls" if os.name == "nt" else "clear")
 
+def load_in_character (charakter):
+     Character_stats["HP"] = Character_profiles[charakter]["HP"]
+     Character_stats["EP"] = Character_profiles[charakter]["EP"]
+     Character_stats["Strength"] = Character_profiles[charakter]["Strength"]
+     Character_stats["Constitution"] = Character_profiles[charakter]["Constitution"]
+     Character_stats["Dexterity"] = Character_profiles[charakter]["Dexterity"]
+     Character_stats["Wisdom"] = Character_profiles[charakter]["Wisdom"]
+     Character_stats["Intelligence"] = Character_profiles[charakter]["Intelligence"]
+     Character_stats["Charisma"] = Character_profiles[charakter]["Charisma"]
+     Character_stats["Backstory"] = Character_profiles[charakter]["Backstory"]
+    
 def main():
     current_scene = 1
     try:
