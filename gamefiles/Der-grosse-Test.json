@@ -1,6 +1,7 @@
 {
     "Version": "v1.0",
     "titel": "der große Test",
+    "info": "das grosse Testspiel",
     "Character_profiles": {
         "1": {
             "HP": 100,
