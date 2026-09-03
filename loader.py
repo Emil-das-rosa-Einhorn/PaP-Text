@@ -27,7 +27,7 @@ def check_update():
     if response.status_code == 200:
         items = response.json()
         for item in items:
-            item_version = item.get("name").removeprefix("v").removesuffix(".json")
+            item_version = item.get("name").removesuffix(".json")
             files.append(item_version)
     else:
         print(f"Fehler beim Abrufen: {response.status_code}")
@@ -36,6 +36,7 @@ def check_update():
 def load_info ():
     game_list = check_update()
     game_infos = []
+    game_version = []
     for filename in game_list:
         base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/gamefiles/"
         url = base_url + filename + ".json"
@@ -43,4 +44,5 @@ def load_info ():
         if response.status_code == 200:
             item = response.json()
             game_infos.append(item["info"])
-    return game_infos
+            game_version.append(item["version"])
+    return game_infos, game_version

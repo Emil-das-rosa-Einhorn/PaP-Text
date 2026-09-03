@@ -9,18 +9,20 @@ Character_stats = {}
 Character_profiles = {}
 story = {}
 title = "no Game loaded"
+version = "v0.0"
 ui_wait_time = 1.5
 
 def download_game (filename):
-    global story, Character_profiles, title
+    global story, Character_profiles, title, version
     loader.download_gamefile(filename)
     gamedata = loader.load_gamefile()
     story = gamedata["content"]
     Character_profiles = gamedata["Character_profiles"]
     title = gamedata["titel"]
+    version = gamedata["version"] 
 
 def load_game_local ():
-    global story, Character_profiles, title
+    global story, Character_profiles, title, version
     gamedata = loader.load_gamefile()
     if gamedata == None:
         print("no Game is stored. Please select a file to Download")
@@ -29,6 +31,7 @@ def load_game_local ():
         story = gamedata["content"]
         Character_profiles = gamedata["Character_profiles"]
         title = gamedata["titel"]
+        version = gamedata["version"]
 
         return True
 
@@ -128,10 +131,9 @@ def thinking_time(say_type=None):
     os.system("cls" if os.name == "nt" else "clear")
 
 header = f"""
-
+===============================================
 ===============================================
 ===================  Menu  ====================
-===============================================
 """
 
 footer ="""
@@ -142,7 +144,8 @@ def menu ():
     while True:
         os.system("cls" if os.name == "nt" else "clear")
         print (header)
-        print (f"Geladener Titel: {title}")
+        print (f"Geladener Titel: {title} | Version: {version}")
+        print ("-"*50)
         print ("A: Load game")
         print ("B: Download game")
         print ("C: Choose Character")
@@ -150,7 +153,7 @@ def menu ():
         print ("E: Play")
         print ("To Quit the Game, please press strg + C")
         print (footer)
-        choice = input ("please chose an Option: ").upper()
+        choice = input ("Please chose an Option: ").upper()
         os.system("cls" if os.name == "nt" else "clear")
         if choice == "A":
             if load_game_local():
@@ -201,14 +204,14 @@ def menu_B():
     while True:
         print (header)
         gamelist = loader.check_update()
-        game_infos = loader.load_info()
+        game_infos, game_version = loader.load_info()
         game_counter = 0
         for game in gamelist:
-            print (f"Title: {game}")
+            print (f"Title: {game} | {game_version[game_counter]}")
             print (f"Info: {game_infos[game_counter]}")
             print ("-"*50)
             game_counter = game_counter + 1
-        print ("press E to go back to the Menu")
+        print ("Press E to go back to the Menu")
         print (footer)
         filename = input ("Please type in the Game you want to Play: ")
         if filename == "E" or filename == "e":
