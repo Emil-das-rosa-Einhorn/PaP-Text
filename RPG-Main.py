@@ -204,8 +204,11 @@ def menu_B():
         game_infos = loader.load_info()
         game_counter = 0
         for game in gamelist:
+            print ("Game: ")
             print (game)
+            print ("Info: ")
             print (game_infos[game_counter])
+            print ("-"*50)
             game_counter = game_counter + 1
         print ("press E to go back to the Menu")
         print (footer)
