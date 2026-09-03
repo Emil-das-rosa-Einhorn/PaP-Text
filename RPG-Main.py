@@ -266,6 +266,9 @@ def menu_C():
         os.system("cls" if os.name == "nt" else "clear")
         if choice == "A":
             Name = input ("Please Typ in your Charakter Name: ")
+            print (say("name"))
+            sleep (ui_wait_time)
+            os.system("cls" if os.name == "nt" else "clear")
         elif choice == "B":
             while True:
                 print (header)
