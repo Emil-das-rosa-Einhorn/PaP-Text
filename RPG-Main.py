@@ -23,7 +23,7 @@ def load_game_local ():
     global story, Character_profiles, title
     gamedata = loader.load_gamefile()
     if gamedata == None:
-        print("no Game is stored. Pleas select a file to Download")
+        print("no Game is stored. Please select a file to Download")
         return False
     else:
         story = gamedata["content"]
@@ -142,12 +142,12 @@ def menu ():
     while True:
         os.system("cls" if os.name == "nt" else "clear")
         print (header)
-        print (title)
-        print ("A: load game")
-        print ("B: download game")
-        print ("C: choose Character")
-        print ("D: choose difficulty level")
-        print ("E: Exit")
+        print (f"Geladener Titel: {title}")
+        print ("A: Load game")
+        print ("B: Download game")
+        print ("C: Choose Character")
+        print ("D: Choose difficulty level")
+        print ("E: Play")
         print ("To Quit the Game, please press strg + C")
         print (footer)
         choice = input ("please chose an Option: ").upper()
@@ -204,10 +204,8 @@ def menu_B():
         game_infos = loader.load_info()
         game_counter = 0
         for game in gamelist:
-            print ("Game: ")
-            print (game)
-            print ("Info: ")
-            print (game_infos[game_counter])
+            print (f"Title: {game}")
+            print (f"Info: {game_infos[game_counter]}")
             print ("-"*50)
             game_counter = game_counter + 1
         print ("press E to go back to the Menu")
@@ -243,6 +241,8 @@ def main():
                 print (story[str(current_scene)]["plot"])
                 if story[str(current_scene)]["choices"]["A"][0] == "END":
                     print (story[str(current_scene)]["choices"]["A"][2])
+                    print (" ")
+                    print ("-"*50)
                     input ("press any key to continue or str + C to quit")
                     current_scene = 1
                     break
