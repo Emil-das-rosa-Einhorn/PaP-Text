@@ -1,6 +1,7 @@
 {
     "Version": "v3.0",
     "titel": "Zwei",
+    "info": "das zweit grösste Testspiel",
     "Character_profiles": {
         "1": {
             "HP": 100,
