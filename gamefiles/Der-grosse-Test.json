@@ -11,7 +11,8 @@
             "Dexterity": 4,
             "Wisdom": 5,
             "Intelligence": 5,
-            "Charisma": 3
+            "Charisma": 3,
+            "Backstory": "He served the Crown until the heir was assassinated under his watch.\nFramed by corrupted nobles, he barely escaped execution.\nNow a wandering mercenary, he wears tarnished armor as a painful reminder."
         },
         "2": {
             "HP": 70,
@@ -21,7 +22,8 @@
             "Dexterity": 2,
             "Wisdom": 1,
             "Intelligence": 2,
-            "Charisma": 4
+            "Charisma": 4,
+            "Backstory": "She spent her youth in the Great Library, obsessed with forbidden arcane runes.\nAn unapproved experiment blew off half the academy's eastern wing, earning her instant exile.\nArmed with a scorched journal, she roams ancient ruins to prove her dangerous theories right."
         },
         "3": {
             "HP": 100,
@@ -31,7 +33,8 @@
             "Dexterity": 2,
             "Wisdom": 4,
             "Intelligence": 1,
-            "Charisma": 5
+            "Charisma": 5,
+            "Backstory": "Orphaned as an infant, he was raised by a shadowy hermit in the Gloomwood Fens.\nRaised on mud, venom, and stealth, he learned to move without making a sound.\nHe steps into civilized cities, finding political games far more treacherous than swamp monsters."
         },
         "4": {
             "HP": 30,
@@ -41,7 +44,8 @@
             "Dexterity": 5,
             "Wisdom": 5,
             "Intelligence": 5,
-            "Charisma": 5
+            "Charisma": 5,
+            "Backstory": "He was a blacksmith who struck a deal with an ancient entity to save his starving town.\nThe entity bound its dark essence to his left arm, saving the village at a heavy cost.\nNow, the creature whispers constant temptations, driving Bram to break the pact before his will snaps."
         },
         "5": {
             "HP": 30,
@@ -51,7 +55,8 @@
             "Dexterity": 5,
             "Wisdom": 5,
             "Intelligence": 5,
-            "Charisma": 5
+            "Charisma": 5,
+            "Backstory": "HE trained at the Monastery of the Open Flame, using martial arts to protect the vulnerable.\nHe carries a heavy iron cauldron on his back, traveling from village to village.\nHe believes a hot meal and a stout defense are the truest ways to fight the world's darkness."
         },
         "6": {
             "HP": 30,
@@ -61,7 +66,8 @@
             "Dexterity": 5,
             "Wisdom": 5,
             "Intelligence": 5,
-            "Charisma": 5
+            "Charisma": 5,
+            "Backstory": "She was a quiet woodcutter who accidentally chopped down a sacred elder tree.\nThe dying forest spirit merged with her soul, burdening her with raw, chaotic magic.\nTerrified of her power, she travels to find control before the spirit consumes her humanity."
         }
     },
     "content": {
