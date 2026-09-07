@@ -1,1 +1,17 @@
-{"test": 200}
+{
+    "main": {
+        "comment": "Added Functionality to push updates",
+        "aktion": "",
+        "version": "v1.0.0"
+    },
+    "loader": {
+        "comment": "Added Functionality to push updates",
+        "aktion": "",
+        "version": "v1.0.0"
+    },
+    "updater": {
+        "comment": "New file",
+        "aktion": "Please download the file updater.py and place it in the same folder as die Main Game (RPG-Main.py)",
+        "version": "v1.0.0"
+    }
+}
