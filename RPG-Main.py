@@ -9,6 +9,7 @@ import sys
 Name = "Edward"
 difficulty = 5
 dice_roll = 0
+current_scene = 1
 update_available = False
 suported_updater = "v1.0.0"
 Character_stats = {"HP": None,
@@ -388,6 +389,25 @@ def menu ():
 
         elif choice == "F":
             menu_F()
+
+        elif choice == "G":
+            while True:
+                global current_scene
+                print (header)
+                print (f"Please select the Szene you whant to start with [currently: {current_scene}]")
+                inp = input ("Szene: ")
+                try:
+                    current_scene = int(inp)
+                    os.system("cls" if os.name == "nt" else "clear")
+                    print (f"Difficulty Level was set to: {difficulty}")
+                    sleep(ui_wait_time)
+                    break
+                except ValueError:
+                    os.system("cls" if os.name == "nt" else "clear")
+                    print ("Input a hole Number form 1 to 10")
+                    sleep(ui_wait_time)
+                os.system("cls" if os.name == "nt" else "clear")
+        
         else:
             os.system("cls" if os.name == "nt" else "clear")
             print ("Please choose a valid option")
@@ -516,7 +536,7 @@ def load_in_character (charakter):
      Character_stats["Backstory"] = Character_profiles[charakter]["Backstory"]
     
 def main():
-    current_scene = 1
+    global current_scene
     try:
         while True:
             menu_F()
