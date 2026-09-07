@@ -335,6 +335,7 @@ def menu ():
         print ("D: Choose difficulty level")
         print ("E: Play")
         print (f"F: Check Update {uda}")
+        print ("G: Select Chapters")
         print ("To Quit the Game, please press strg + C")
         print (footer)
         choice = input ("Please chose an Option: ").upper()
@@ -393,18 +394,31 @@ def menu ():
         elif choice == "G":
             while True:
                 global current_scene
-                print (header)
-                print (f"Please select the Szene you whant to start with [currently: {current_scene}]")
-                inp = input ("Szene: ")
-                try:
-                    current_scene = int(inp)
+                chap_counter = 0
+                for key in story:
+                    chap_counter += 1
+                if chap_counter == 0:
                     os.system("cls" if os.name == "nt" else "clear")
-                    print (f"Difficulty Level was set to: {difficulty}")
+                    print (f"Please select a Game first")
                     sleep(ui_wait_time)
                     break
+                print (f"Please select the Szene you whant to start with [currently: {current_scene}/{chap_counter}]")
+                inp = input (f"Szene (1 - {chap_counter}): ")
+                try:
+                    inp_int = int(inp)
+                    if 0 < inp_int <= chap_counter:
+                        current_scene = inp_int
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print (f"The Adventure will start at: {current_scene}")
+                        sleep(ui_wait_time)
+                        break
+                    else:
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print (f"Select a Szene between 1 and {chap_counter}")
+                        sleep(ui_wait_time)
                 except ValueError:
                     os.system("cls" if os.name == "nt" else "clear")
-                    print ("Input a hole Number form 1 to 10")
+                    print ("Input a hole Numbers:")
                     sleep(ui_wait_time)
                 os.system("cls" if os.name == "nt" else "clear")
         
