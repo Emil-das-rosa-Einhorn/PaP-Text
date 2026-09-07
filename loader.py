@@ -40,27 +40,36 @@ def load_gamefile():
 
 def check_gamelist():
     files = []
-    api_url = "https://api.github.com/repos/Emil-das-rosa-Einhorn/PaP-Text/contents/gamefiles"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        items = response.json()
-        for item in items:
-            item_version = item.get("name").removesuffix(".json")
-            files.append(item_version)
-    else:
-        print(f"Fehler beim Abrufen: {response.status_code}")
-    return files
+    try:
+        api_url = "https://api.github.com/repos/Emil-das-rosa-Einhorn/PaP-Text/contents/gamefiles"
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            items = response.json()
+            for item in items:
+                item_version = item.get("name").removesuffix(".json")
+                files.append(item_version)
+        else:
+            print(f"Fehler beim Abrufen: {response.status_code}")
+        return files
+    except Exception as e:
+        files = ["could not connect to the github page"]
+        return files
 
 def load_info ():
     game_list = check_gamelist()
     game_infos = []
     game_version = []
-    for filename in game_list:
-        base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/gamefiles/"
-        url = base_url + filename + ".json"
-        response = requests.get(url)
-        if response.status_code == 200:
-            item = response.json()
-            game_infos.append(item["info"])
-            game_version.append(item["version"])
-    return game_infos, game_version
+    try:
+        for filename in game_list:
+            base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/gamefiles/"
+            url = base_url + filename + ".json"
+            response = requests.get(url)
+            if response.status_code == 200:
+                item = response.json()
+                game_infos.append(item["info"])
+                game_version.append(item["version"])
+        return game_infos, game_version
+    except Exception as e:
+        game_infos = ["could not connect to the github page"]
+        game_version = ["could not connect to the github page"]
+        return game_infos, game_version 
