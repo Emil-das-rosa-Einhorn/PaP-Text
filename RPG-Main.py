@@ -273,6 +273,7 @@ def menu_F():
                                     break
                                 else:
                                     print("choose a valid option")
+                                    sleep(ui_wait_time)
                         elif choice == "B":
                             os.system("cls" if os.name == "nt" else "clear")
                             print ("Game will be closed...")
@@ -290,6 +291,7 @@ def menu_F():
                                     break
                                 else:
                                     print ("choose valid option")
+                                    sleep (ui_wait_time)
 
 
             print ("There is a new Update")
