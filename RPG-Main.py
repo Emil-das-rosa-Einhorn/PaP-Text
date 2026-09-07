@@ -1,7 +1,11 @@
+main_version = "v1.0.0"
 import random
 from time import sleep
 import loader
 import os
+import subprocess
+import sys
+
 Name = "Edward"
 difficulty = 5
 dice_roll = 0
@@ -18,20 +22,31 @@ Character_stats = {"HP": None,
 Character_profiles = {}
 story = {}
 title = "no Game loaded"
-version = "v0.0"
+game_version = "v0.0"
 ui_wait_time = 1.5
 
+def lounch_updater ():
+    l_version = loader.get_version()
+    m_version = main_version
+    subprocess.Popen([
+    sys.executable,
+    "updater.py",
+    l_version,
+    m_version
+    ])
+    sys.exit()
+
 def download_game (filename):
-    global story, Character_profiles, title, version
+    global story, Character_profiles, title, game_version
     loader.download_gamefile(filename)
     gamedata = loader.load_gamefile()
     story = gamedata["content"]
     Character_profiles = gamedata["Character_profiles"]
     title = gamedata["titel"]
-    version = gamedata["version"] 
+    game_version = gamedata["version"] 
 
 def load_game_local ():
-    global story, Character_profiles, title, version
+    global story, Character_profiles, title, game_version
     gamedata = loader.load_gamefile()
     if gamedata == None:
         print("no Game is stored. Please select a file to Download")
@@ -40,7 +55,7 @@ def load_game_local ():
         story = gamedata["content"]
         Character_profiles = gamedata["Character_profiles"]
         title = gamedata["titel"]
-        version = gamedata["version"]
+        game_version = gamedata["version"]
 
         return True
 
@@ -153,7 +168,7 @@ def menu ():
     while True:
         os.system("cls" if os.name == "nt" else "clear")
         print (header)
-        print (f"Geladener Titel: {title} | Version: {version}")
+        print (f"Geladener Titel: {title} | Version: {game_version}")
         print ("-"*50)
         print ("A: Load game")
         print ("B: Download game")

@@ -1,7 +1,11 @@
+loader_version = "v1.0.0"
 import urllib.request
 import requests
 import json
 import os
+
+def get_version():
+    return loader_version
 
 def download_gamefile(filename):
     try:
