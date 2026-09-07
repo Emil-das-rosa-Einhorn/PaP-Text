@@ -10,7 +10,7 @@ def download_loader(filename):
         base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/"
         url = base_url + filename + ".py"
         print (url)
-        pfad = os.path.join(os.path.dirname(__file__), "loader.py")
+        pfad = os.path.join(os.path.dirname(__file__), filename + ".py")
         print (pfad)
         urllib.request.urlretrieve(url, pfad)
         return True, "Download erfolgreich"
@@ -25,7 +25,7 @@ def main ():
     else:
         pass
     if m_up == "True":
-        download_loader("main")
+        download_loader("RPG-Main")
     else:
         pass
     
