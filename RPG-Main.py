@@ -10,6 +10,7 @@ Name = "Edward"
 difficulty = 5
 dice_roll = 0
 update_available = False
+suported_updater = "v1.0.0"
 Character_stats = {"HP": None,
             "EP": None,
             "Strength": None,
@@ -70,7 +71,7 @@ def check_updater():
         else:
             pass
 
-        if update_info["updater"]["update"]:
+        if update_info["updater"]["version"] != suported_updater:
             r = True
             outofdate.append("updater")
 
