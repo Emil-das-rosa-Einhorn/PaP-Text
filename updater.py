@@ -5,13 +5,12 @@ import requests
 import json
 import os
 
-def download_loader():
-    filename = "loader"
+def download_loader(filename):
     try:
         base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/"
         url = base_url + filename + ".py"
         print (url)
-        pfad = os.path.join(os.path.dirname(__file__), "loader.json")
+        pfad = os.path.join(os.path.dirname(__file__), "loader.py")
         print (pfad)
         urllib.request.urlretrieve(url, pfad)
         return True, "Download erfolgreich"
@@ -21,6 +20,15 @@ def download_loader():
 def main ():
     l_up = sys.argv[1]
     m_up = sys.argv[2]
+    if l_up == "True":
+        download_loader("loader")
+    else:
+        pass
+    if m_up == "True":
+        download_loader("main")
+    else:
+        pass
+    
     return 1
 
 if __name__ == "__main__":

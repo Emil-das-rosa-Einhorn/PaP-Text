@@ -1,7 +1,7 @@
 main_version = "v1.0.0"
 import random
 from time import sleep
-import loader
+import loader2
 import os
 import subprocess
 import sys
@@ -27,8 +27,8 @@ ui_wait_time = 1.5
 
 def check_updater():
     outofdate = []
-    check, update_info = loader.load_update_info()
-    cur_l_version = loader.get_version()
+    check, update_info = loader2.load_update_info()
+    cur_l_version = loader2.get_version()
     cur_m_version = main_version
     r = False
     try:
@@ -78,8 +78,8 @@ def lounch_updater (outofdate):
 
 def download_game (filename):
     global story, Character_profiles, title, game_version
-    loader.download_gamefile(filename)
-    gamedata = loader.load_gamefile()
+    loader2.download_gamefile(filename)
+    gamedata = loader2.load_gamefile()
     story = gamedata["content"]
     Character_profiles = gamedata["Character_profiles"]
     title = gamedata["titel"]
@@ -87,7 +87,7 @@ def download_game (filename):
 
 def load_game_local ():
     global story, Character_profiles, title, game_version
-    gamedata = loader.load_gamefile()
+    gamedata = loader2.load_gamefile()
     if gamedata == None:
         print("no Game is stored. Please select a file to Download")
         return False
@@ -298,8 +298,8 @@ def menu ():
 def menu_B():
     while True:
         print (header)
-        gamelist = loader.check_gamelist()
-        game_infos, game_version = loader.load_info()
+        gamelist = loader2.check_gamelist()
+        game_infos, game_version = loader2.load_info()
         game_counter = 0
         for game in gamelist:
             print (f"Title: {game} | {game_version[game_counter]}")
