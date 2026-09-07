@@ -1,4 +1,4 @@
-loader_version = "v1.0.0"
+loader_version = "v2.0.0"
 import urllib.request
 import requests
 import json

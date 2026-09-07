@@ -1,4 +1,4 @@
-main_version = "v1.0.0"
+main_version = "v2.0.0"
 import random
 from time import sleep
 import loader
