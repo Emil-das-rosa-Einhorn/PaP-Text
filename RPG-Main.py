@@ -594,29 +594,35 @@ def main():
                 input ("Press Enter to start the adventure...")
                 break
             while True:
-                print (story[str(current_scene)]["plot"])
-                if story[str(current_scene)]["choices"]["A"][0] == "END":
-                    print (story[str(current_scene)]["choices"]["A"][2])
-                    print (" ")
-                    print ("-"*50)
-                    input ("press any key to continue or str + C to quit")
-                    current_scene = 1
-                    break
-                else:
-                    print (" ")
-                    print (" ")
-                    print ("=" * 50)
-                    for choice in story[str(current_scene)]["choices"]:
-                        print(f"{choice}: {story[str(current_scene)]['choices'][choice][0]}")
-                    while True:
+                try:
+                    print (story[str(current_scene)]["plot"])
+                    if story[str(current_scene)]["choices"]["A"][0] == "END":
+                        print (story[str(current_scene)]["choices"]["A"][2])
                         print (" ")
-                        user_choice = input("What do you choose? ").upper()
-                        if user_choice in story[str(current_scene)]["choices"]:
-                            current_scene = story[str(current_scene)]["choices"][user_choice][1]
-                            break
-                        else:
-                            print("Invalid choice. Please choose again.")
-                thinking_time(say_type="thinking")
+                        print ("-"*50)
+                        input ("press any key to continue or str + C to quit")
+                        current_scene = 1
+                        break
+                    else:
+                        print (" ")
+                        print (" ")
+                        print ("=" * 50)
+                        for choice in story[str(current_scene)]["choices"]:
+                            print(f"{choice}: {story[str(current_scene)]['choices'][choice][0]}")
+                        while True:
+                            print (" ")
+                            user_choice = input("What do you choose? ").upper()
+                            if user_choice in story[str(current_scene)]["choices"]:
+                                current_scene = story[str(current_scene)]["choices"][user_choice][1]
+                                break
+                            else:
+                                print("Invalid choice. Please choose again.")
+                        thinking_time(say_type="thinking")
+                except Exception as e:
+                    print ("404: here is a lose End!")
+                    print ("Please Inform your DM and try againe")
+                    sleep(ui_wait_time)
+                    break
     except KeyboardInterrupt:
             print("\nAdventure ended by user.")
 
