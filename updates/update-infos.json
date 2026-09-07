@@ -2,12 +2,12 @@
     "main": {
         "comment": "Added Functionality to push updates",
         "aktion": "",
-        "version": "v1.0.0"
+        "version": "v2.0.0"
     },
     "loader": {
         "comment": "Added Functionality to push updates",
         "aktion": "",
-        "version": "v1.0.0"
+        "version": "v2.0.0"
     },
     "updater": {
         "comment": "New file",
