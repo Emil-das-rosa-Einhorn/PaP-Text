@@ -5,12 +5,6 @@ import requests
 import json
 import os
 
-#l_version = sys.argv[1]
-#m_version = sys.argv[2]
-
-#print("Neue Version:", l_version)
-#print("Download:", m_version)
-
 def download_update_info():
     filename = "update-infos"
     try:
@@ -25,8 +19,17 @@ def download_update_info():
         return False, e
 
 def main ():
+    l_version = sys.argv[1]
+    m_version = sys.argv[2]
+
+    print("Neue Version:", l_version)
+    print("Download:", m_version)
     download_update_info()
-    sys.exit()
+    #subprocess.Popen([
+    #sys.executable,
+    #"RPG-Main.py"
+    #])
+    return 1
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

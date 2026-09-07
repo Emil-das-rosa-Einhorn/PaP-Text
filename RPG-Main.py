@@ -25,16 +25,47 @@ title = "no Game loaded"
 game_version = "v0.0"
 ui_wait_time = 1.5
 
-def lounch_updater ():
-    l_version = loader.get_version()
-    m_version = main_version
-    subprocess.Popen([
-    sys.executable,
-    "updater.py",
-    l_version,
-    m_version
-    ])
-    sys.exit()
+def check_updater():
+    outofdate = []
+    check, update_info = loader.load_update_info()
+    cur_l_version = loader.get_version()
+    cur_m_version = main_version
+    r = False
+    try:
+        if cur_l_version != update_info["loader"]["version"]:
+            r = True
+            outofdate.append("loader")
+        else:
+            pass
+
+        if cur_m_version != update_info["main"]["version"]:
+            r = True
+            outofdate.append("main")
+        else:
+            pass
+
+        if r:
+            return True, outofdate
+        else:
+            return False, outofdate
+        
+    except Exception as e:
+        return False, outofdate
+
+
+def lounch_updater (outofdate):
+    with open("updater.log", "w", encoding="utf-8") as log:
+        subprocess.Popen(
+            [
+                sys.executable,
+                "updater.py",
+                outofdate
+            ],
+            stdout=log,
+            stderr=log,
+            stdin=subprocess.DEVNULL
+        )
+    sys.exit(0)
 
 def download_game (filename):
     global story, Character_profiles, title, game_version
@@ -175,6 +206,7 @@ def menu ():
         print ("C: Choose Character")
         print ("D: Choose difficulty level")
         print ("E: Play")
+        print ("F: Check Update")
         print ("To Quit the Game, please press strg + C")
         print (footer)
         choice = input ("Please chose an Option: ").upper()
@@ -226,13 +258,29 @@ def menu ():
                 os.system("cls" if os.name == "nt" else "clear")
             else:
                 break
+
+        elif choice == "F":
+            check, outofdate = check_updater()
+            if check:
+                os.system("cls" if os.name == "nt" else "clear")
+                print ("Update ist da")
+                print (outofdate)
+                sleep(ui_wait_time)
+                os.system("cls" if os.name == "nt" else "clear")
+            else:
+                os.system("cls" if os.name == "nt" else "clear")
+                print ("Kein Update")
+                print (outofdate)
+                sleep(ui_wait_time)
+                os.system("cls" if os.name == "nt" else "clear")
+
         else:
             print ("C")
 
 def menu_B():
     while True:
         print (header)
-        gamelist = loader.check_update()
+        gamelist = loader.check_gamelist()
         game_infos, game_version = loader.load_info()
         game_counter = 0
         for game in gamelist:

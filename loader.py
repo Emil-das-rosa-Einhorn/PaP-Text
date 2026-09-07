@@ -7,6 +7,20 @@ import os
 def get_version():
     return loader_version
 
+def load_update_info():
+    filename = "update-infos"
+    try:
+        base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/updates/"
+        url = base_url + filename + ".json"
+        pfad = os.path.join(os.path.dirname(__file__), "updates", "info.json")
+        urllib.request.urlretrieve(url, pfad)
+        with open(pfad, "r", encoding="utf-8") as f:
+            update_info = json.load(f)        
+        return True, update_info
+    except Exception as e:
+        return False, e
+
+
 def download_gamefile(filename):
     try:
         base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/gamefiles/"
@@ -24,7 +38,7 @@ def load_gamefile():
     with open(pfad, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def check_update():
+def check_gamelist():
     files = []
     api_url = "https://api.github.com/repos/Emil-das-rosa-Einhorn/PaP-Text/contents/gamefiles"
     response = requests.get(api_url)
@@ -38,7 +52,7 @@ def check_update():
     return files
 
 def load_info ():
-    game_list = check_update()
+    game_list = check_gamelist()
     game_infos = []
     game_version = []
     for filename in game_list:

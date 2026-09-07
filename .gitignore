@@ -4,3 +4,4 @@ gamefile.json
 info.json
 __pycache__
 *.txt
+*.log
