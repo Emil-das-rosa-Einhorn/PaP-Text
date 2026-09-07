@@ -26,6 +26,30 @@ title = "no Game loaded"
 game_version = "v0.0"
 ui_wait_time = 1.5
 
+repl_man = """
+Updater Instructions
+====================
+
+1. Download the latest "updater.py" from GitHub:
+
+   https://github.com/Emil-das-rosa-Einhorn/PaP-Text/blob/main/updater.py
+
+2. Open the location of your current "updater.py".
+
+3. Replace the old "updater.py" with the newly downloaded version.
+
+4. If you are not sure where the file is located, check the path printed in the console.
+
+5. Make sure the downloaded file is named exactly:
+
+   updater.py
+
+6. Restart the application after replacing the file.
+
+Note:
+The updater should not be replaced while it is currently running.
+"""
+
 def check_updater():
     global update_available
     outofdate = []
@@ -45,6 +69,10 @@ def check_updater():
             outofdate.append("main")
         else:
             pass
+
+        if update_info["updater"]["update"]:
+            r = True
+            outofdate.append("updater")
 
         if r:
             update_available = True
@@ -213,6 +241,59 @@ def menu_F():
     if check:
         os.system("cls" if os.name == "nt" else "clear")
         while True:
+            for skript in outofdate:
+                if skript == "updater":
+                    path = os.path.join(os.path.dirname(__file__))
+                    update_now = True
+                    while update_now:
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print ("Your Update Skript is not up to date!")
+                        print ("-"*50)
+                        print (f"Please manualy Update your updater.py skript in the folowing folder: {path}")
+                        print ("-"*50)
+                        print ("A: Manual for the Update")
+                        print ("B: Update now")
+                        print ("C: Exit [not recommended]")
+                        choice = input ("Please chose an Option: ").upper()
+                        if choice == "A":
+                            while True:
+                                os.system("cls" if os.name == "nt" else "clear")
+                                print(f"path of the file: {path}")
+                                print (repl_man)
+                                print ("-"*50)
+                                print ("A: Update now")
+                                print ("B: Exit")
+                                print ("-"*50)
+                                choice = input ("Please chose an Option: ").upper()
+                                if choice == "A":
+                                    os.system("cls" if os.name == "nt" else "clear")
+                                    print ("Game will be closed...")
+                                    sleep(ui_wait_time)
+                                    sys.exit(0)
+                                elif choice == "B":
+                                    break
+                                else:
+                                    print("choose a valid option")
+                        elif choice == "B":
+                            os.system("cls" if os.name == "nt" else "clear")
+                            print ("Game will be closed...")
+                            sleep(ui_wait_time)
+                            sys.exit(0)
+                        elif choice == "C":
+                            while True:
+                                os.system("cls" if os.name == "nt" else "clear")
+                                print ("By not updating the skript, you run the rist of corrupting your game and or gamefiles")
+                                sleep(ui_wait_time)
+                                choice = input ("Type 'Yes' to continue or 'No' to Update Manualy")
+                                if choice == "Yes":
+                                    update_now = False
+                                    break
+                                elif choice == "No":
+                                    break
+                                else:
+                                    print ("choose valid option")
+
+
             print ("There is a new Update")
             print (f"This files will be Updated: {outofdate}")
             print ("-"*50)
