@@ -5,13 +5,13 @@ import requests
 import json
 import os
 
-def download_update_info():
-    filename = "update-infos"
+def download_loader():
+    filename = "loader"
     try:
-        base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/updates/"
-        url = base_url + filename + ".json"
+        base_url = "https://raw.githubusercontent.com/Emil-das-rosa-Einhorn/PaP-Text/refs/heads/main/"
+        url = base_url + filename + ".py"
         print (url)
-        pfad = os.path.join(os.path.dirname(__file__), "updates", "info.json")
+        pfad = os.path.join(os.path.dirname(__file__), "loader.json")
         print (pfad)
         urllib.request.urlretrieve(url, pfad)
         return True, "Download erfolgreich"
@@ -19,16 +19,8 @@ def download_update_info():
         return False, e
 
 def main ():
-    l_version = sys.argv[1]
-    m_version = sys.argv[2]
-
-    print("Neue Version:", l_version)
-    print("Download:", m_version)
-    download_update_info()
-    #subprocess.Popen([
-    #sys.executable,
-    #"RPG-Main.py"
-    #])
+    l_up = sys.argv[1]
+    m_up = sys.argv[2]
     return 1
 
 if __name__ == "__main__":

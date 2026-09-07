@@ -54,12 +54,21 @@ def check_updater():
 
 
 def lounch_updater (outofdate):
+    loader_up = "False"
+    main_up = "False"
+    for skript in outofdate:
+        if skript == "loader":
+            loader_up = "True"
+        elif skript == "main":
+            main_up = "True"
+
     with open("updater.log", "w", encoding="utf-8") as log:
         subprocess.Popen(
             [
                 sys.executable,
                 "updater.py",
-                outofdate
+                loader_up,
+                main_up
             ],
             stdout=log,
             stderr=log,
@@ -263,14 +272,23 @@ def menu ():
             check, outofdate = check_updater()
             if check:
                 os.system("cls" if os.name == "nt" else "clear")
-                print ("Update ist da")
-                print (outofdate)
-                sleep(ui_wait_time)
+                while True:
+                    print ("There is a new Update")
+                    print (f"This files will be Updated: {outofdate}")
+                    print ("-"*50)
+                    print ("A: Update Game")
+                    print ("B: Exit")
+                    print ("-"*50)
+                    choice = input ("Please chose an Option: ").upper()
+                    if choice == "A":
+                        lounch_updater(outofdate)
+                        break
+                    elif choice == "B":
+                        break
                 os.system("cls" if os.name == "nt" else "clear")
             else:
                 os.system("cls" if os.name == "nt" else "clear")
-                print ("Kein Update")
-                print (outofdate)
+                print ("No updates of you to day")
                 sleep(ui_wait_time)
                 os.system("cls" if os.name == "nt" else "clear")
 
