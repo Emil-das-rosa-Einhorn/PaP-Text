@@ -11,6 +11,6 @@
     },
     "updater": {
         "aktion": "Please download the file updater.py and place it in the same folder as die Main Game (RPG-Main.py)",
-        "version": "v2.0.0"
+        "version": "v1.0.0"
     }
 }
