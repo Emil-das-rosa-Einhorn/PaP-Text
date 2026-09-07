@@ -5,6 +5,7 @@ import loader
 import os
 import subprocess
 import sys
+import numbers as num
 
 Name = "Edward"
 difficulty = 5
@@ -134,11 +135,44 @@ def load_game_local ():
         return True
 
 
-def roll_dice(sides=6, numb=1):
-    total = 0
-    for _ in range(numb):
-        total += random.randint(1, sides)
-    return total
+def dice_animation(sides,result):
+    os.system("cls" if os.name == "nt" else "clear")
+    time = 0.05
+    multi = 1.15
+    wait = 0.9
+    last_num = 0
+    for i in range(20):
+        number = random.randint(1, sides)
+        if number == last_num:
+            number =+ 1
+        else:
+            pass
+        if number > sides:
+            number = 1
+        print (num.num(number))
+        sleep (time)
+        time = time * multi
+        number = last_num
+        os.system("cls" if os.name == "nt" else "clear")
+
+    print ("You rolled a...")
+    sleep (wait)
+    os.system("cls" if os.name == "nt" else "clear")
+
+    for i in range(3):
+        print (num.num(result))
+        sleep(wait)
+        os.system("cls" if os.name == "nt" else "clear")
+        sleep(wait)
+
+
+
+def roll_dice(sides=6):
+    if sides > 20:
+        sides = 20
+    result = random.randint(1, sides)
+    dice_animation(sides, result)
+    return result
 
 def say (type):
     if type == "thinking":
