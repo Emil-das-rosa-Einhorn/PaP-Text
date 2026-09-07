@@ -244,8 +244,7 @@ def menu_F():
             for skript in outofdate:
                 if skript == "updater":
                     path = os.path.join(os.path.dirname(__file__))
-                    update_now = True
-                    while update_now:
+                    while True:
                         os.system("cls" if os.name == "nt" else "clear")
                         print ("Your Update Skript is not up to date!")
                         print ("-"*50)
@@ -284,10 +283,9 @@ def menu_F():
                                 os.system("cls" if os.name == "nt" else "clear")
                                 print ("By not updating the skript, you run the rist of corrupting your game and or gamefiles")
                                 sleep(ui_wait_time)
-                                choice = input ("Type 'Yes' to continue or 'No' to Update Manualy")
+                                choice = input ("Type 'Yes' to continue or 'No' to Update Manualy: ")
                                 if choice == "Yes":
-                                    update_now = False
-                                    break
+                                    return
                                 elif choice == "No":
                                     break
                                 else:
