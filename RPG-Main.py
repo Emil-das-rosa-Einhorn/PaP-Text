@@ -9,6 +9,7 @@ import sys
 Name = "Edward"
 difficulty = 5
 dice_roll = 0
+update_available = False
 Character_stats = {"HP": None,
             "EP": None,
             "Strength": None,
@@ -26,6 +27,7 @@ game_version = "v0.0"
 ui_wait_time = 1.5
 
 def check_updater():
+    global update_available
     outofdate = []
     check, update_info = loader.load_update_info()
     cur_l_version = loader.get_version()
@@ -45,8 +47,10 @@ def check_updater():
             pass
 
         if r:
+            update_available = True
             return True, outofdate
         else:
+            update_available = False
             return False, outofdate
         
     except Exception as e:
@@ -234,6 +238,10 @@ def menu_F():
 
 def menu ():
     while True:
+        if update_available:
+            uda = "[new Update]"
+        else:
+            uda = ""
         os.system("cls" if os.name == "nt" else "clear")
         print (header)
         print (f"Geladener Titel: {title} | Version: {game_version}")
@@ -243,7 +251,7 @@ def menu ():
         print ("C: Choose Character")
         print ("D: Choose difficulty level")
         print ("E: Play")
-        print ("F: Check Update")
+        print (f"F: Check Update {uda}")
         print ("To Quit the Game, please press strg + C")
         print (footer)
         choice = input ("Please chose an Option: ").upper()
