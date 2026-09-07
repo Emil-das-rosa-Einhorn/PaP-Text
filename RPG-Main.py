@@ -204,6 +204,34 @@ footer ="""
 ===============================================
     """
 
+def menu_F():
+    check, outofdate = check_updater()
+    if check:
+        os.system("cls" if os.name == "nt" else "clear")
+        while True:
+            print ("There is a new Update")
+            print (f"This files will be Updated: {outofdate}")
+            print ("-"*50)
+            print ("A: Update Game")
+            print ("B: Exit")
+            print ("-"*50)
+            choice = input ("Please chose an Option: ").upper()
+            if choice == "A":
+                lounch_updater(outofdate)
+                break
+            elif choice == "B":
+                break
+            else:
+                os.system("cls" if os.name == "nt" else "clear")
+                print ("Please choose a valid option")
+                sleep (ui_wait_time)
+        os.system("cls" if os.name == "nt" else "clear")
+    else:
+        os.system("cls" if os.name == "nt" else "clear")
+        print ("You are Up to date!")
+        sleep(ui_wait_time)
+        os.system("cls" if os.name == "nt" else "clear")
+
 def menu ():
     while True:
         os.system("cls" if os.name == "nt" else "clear")
@@ -269,35 +297,12 @@ def menu ():
                 break
 
         elif choice == "F":
-            check, outofdate = check_updater()
-            if check:
-                os.system("cls" if os.name == "nt" else "clear")
-                while True:
-                    print ("There is a new Update")
-                    print (f"This files will be Updated: {outofdate}")
-                    print ("-"*50)
-                    print ("A: Update Game")
-                    print ("B: Exit")
-                    print ("-"*50)
-                    choice = input ("Please chose an Option: ").upper()
-                    if choice == "A":
-                        lounch_updater(outofdate)
-                        break
-                    elif choice == "B":
-                        break
-                    else:
-                        os.system("cls" if os.name == "nt" else "clear")
-                        print ("Please choose a valid option")
-                        sleep (ui_wait_time)
-                os.system("cls" if os.name == "nt" else "clear")
-            else:
-                os.system("cls" if os.name == "nt" else "clear")
-                print ("No updates of you to day")
-                sleep(ui_wait_time)
-                os.system("cls" if os.name == "nt" else "clear")
-
+            menu_F()
         else:
-            print ("C")
+            os.system("cls" if os.name == "nt" else "clear")
+            print ("Please choose a valid option")
+            sleep (ui_wait_time)
+            os.system("cls" if os.name == "nt" else "clear")
 
 def menu_B():
     while True:
@@ -424,33 +429,7 @@ def main():
     current_scene = 1
     try:
         while True:
-            check, outofdate = check_updater()
-            if check:
-                os.system("cls" if os.name == "nt" else "clear")
-                while True:
-                    print ("There is a new Update")
-                    print (f"This files will be Updated: {outofdate}")
-                    print ("-"*50)
-                    print ("A: Update Game")
-                    print ("B: Exit")
-                    print ("-"*50)
-                    choice = input ("Please chose an Option: ").upper()
-                    if choice == "A":
-                        lounch_updater(outofdate)
-                        break
-                    elif choice == "B":
-                        break
-                    else:
-                        os.system("cls" if os.name == "nt" else "clear")
-                        print ("Please choose a valid option")
-                        sleep (ui_wait_time)
-                os.system("cls" if os.name == "nt" else "clear")
-            else:
-                os.system("cls" if os.name == "nt" else "clear")
-                print ("No updates of you to day")
-                sleep(ui_wait_time)
-                os.system("cls" if os.name == "nt" else "clear")
-
+            menu_F()
             while True:
                 print ("Main Menu:")
                 menu()
