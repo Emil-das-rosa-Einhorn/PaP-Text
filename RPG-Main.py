@@ -135,13 +135,39 @@ def load_game_local ():
         return True
 
 
+def squid_say(squid_say):
+    os.system("cls" if os.name == "nt" else "clear")
+    os.system('')
+    print("\033[2J\033[?25l", end="")
+    move_set = [[0,0,1,1,3,0,0,1,1,2,2,2,0,0,0],
+                [0,1,1,0,0,0,0,3,3,1,1,0,3,0,0],
+                [0,0,1,1,3,0,0,1,1,2,2,2,0,0,0],
+                [0,0,1,1,3,0,0,1,1,2,2,2,0,0,0],
+                [0,0,1,1,3,0,0,1,1,2,2,2,0,0,0]]
+    move = random.choice(move_set)
+    print (move)
+    for i in move:
+        if i == 1:
+            print(f"\033[H{num.num(25,squid_say)}")
+        elif i == 2:
+            print(f"\033[H{num.num(26,squid_say)}")
+        elif i == 3:
+            print(f"\033[H{num.num(27,squid_say)}")
+        else:
+            print(f"\033[H{num.num(24,squid_say)}")
+        sleep (0.2)
+    os.system("cls" if os.name == "nt" else "clear")
+    print("\033[?25h")
+
 def dice_animation(sides,result):
     os.system("cls" if os.name == "nt" else "clear")
+    os.system('')
+    print("\033[2J\033[?25l", end="")
     time = 0.05
     multi = 1.15
     wait = 0.9
     last_num = 0
-    for i in range(20):
+    for i in range(5):
         number = random.randint(1, sides)
         if number == last_num:
             number =+ 1
@@ -149,21 +175,37 @@ def dice_animation(sides,result):
             pass
         if number > sides:
             number = 1
-        print (num.num(number))
+        print(f"\33[H{num.num(number)}")
         sleep (time)
+        print("\033[2J\033[H", end="")
+    numb_all = list(range(1, sides + 1))
+    wight_result= 6
+    for i in range(20):
+        wights = [wight_result if z == result else 1 for z in numb_all]
+        number = random.choices(numb_all, weights=wights, k=1)[0]
+        if number == last_num:
+            number =+ 1
+        else:
+            pass
+        if number > sides:
+            number = 1
+        print(f"\33[H{num.num(number)}")
+        sleep (time)
+        print("\033[2J\033[H", end="")
         time = time * multi
         number = last_num
-        os.system("cls" if os.name == "nt" else "clear")
+    print(f"\33[H{num.num(result)}")
+    sleep (time)
 
+    os.system("cls" if os.name == "nt" else "clear")
     print ("You rolled a...")
     sleep (wait)
-    os.system("cls" if os.name == "nt" else "clear")
-
-    for i in range(3):
-        print (num.num(result))
-        sleep(wait)
+    for _ in range(3):
+        print(f"\33[H{num.num(result)}")
+        sleep (wait)
         os.system("cls" if os.name == "nt" else "clear")
-        sleep(wait)
+        sleep (wait)
+    print("\033[?25h")
 
 
 
