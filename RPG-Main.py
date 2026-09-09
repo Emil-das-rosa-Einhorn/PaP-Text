@@ -259,7 +259,7 @@ def thinking_time(say_type=None):
         dot = "." * (i + 1)
         print(dot)
         WT = random.randint(8, 15) / 10
-        sleep(WT)
+        sleep(ui_wait_time/3)
     os.system("cls" if os.name == "nt" else "clear")
 
 header = f"""
