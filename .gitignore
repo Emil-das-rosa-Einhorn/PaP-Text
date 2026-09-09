@@ -7,3 +7,4 @@ __pycache__
 *.log
 loader2.py
 RPG-Main2.py
+.vscode
