@@ -5,7 +5,7 @@ import loader
 import os
 import subprocess
 import sys
-import numbers as num
+import assets as ass
 
 Name = "Edward"
 difficulty = 5
@@ -145,15 +145,18 @@ def squid_say(squid_say):
                 [0,0,1,1,3,0,1,1,0,2,1,1,0,0,1],
                 [1,1,0,0,1,1,0,0,1,1,0,0,1,1,0]]
     move = random.choice(move_set)
+    #print (move)
     for i in move:
-        if i == 1:
-            print(f"\033[H{num.num(25,squid_say)}")
+        if i == 0:
+            print(f"\033[H{ass.squid(0,squid_say)}")
+        elif i == 1:
+            print(f"\033[H{ass.squid(1,squid_say)}")
         elif i == 2:
-            print(f"\033[H{num.num(26,squid_say)}")
+            print(f"\033[H{ass.squid(2,squid_say)}")
         elif i == 3:
-            print(f"\033[H{num.num(27,squid_say)}")
+            print(f"\033[H{ass.squid(3,squid_say)}")
         else:
-            print(f"\033[H{num.num(24,squid_say)}")
+            print(f"\033[H{ass.squid(0,squid_say)}")
         sleep (0.2)
     os.system("cls" if os.name == "nt" else "clear")
     print("\033[?25h")
@@ -174,7 +177,7 @@ def dice_animation(sides,result):
             pass
         if number > sides:
             number = 1
-        print(f"\33[H{num.num(number)}")
+        print(f"\33[H{ass.num(number)}")
         sleep (time)
         print("\033[2J\033[H", end="")
     numb_all = list(range(1, sides + 1))
@@ -188,19 +191,19 @@ def dice_animation(sides,result):
             pass
         if number > sides:
             number = 1
-        print(f"\33[H{num.num(number)}")
+        print(f"\33[H{ass.num(number)}")
         sleep (time)
         print("\033[2J\033[H", end="")
         time = time * multi
         number = last_num
-    print(f"\33[H{num.num(result)}")
+    print(f"\33[H{ass.num(result)}")
     sleep (time)
 
     os.system("cls" if os.name == "nt" else "clear")
     print ("You rolled a...")
     sleep (wait)
     for _ in range(3):
-        print(f"\33[H{num.num(result)}")
+        print(f"\33[H{ass.num(result)}")
         sleep (wait)
         os.system("cls" if os.name == "nt" else "clear")
         sleep (wait)

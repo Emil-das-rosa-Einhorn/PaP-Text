@@ -1,6 +1,6 @@
 def num(num, input_txt=None):
-    if num > 30:
-        num = 30
+    if num > 23:
+        num = 23
     numbers = [
     """
                 ############                            
@@ -289,7 +289,15 @@ def num(num, input_txt=None):
 
                     ####                
                     ####                
-    """,
+    """
+    ]
+
+    return numbers[num]
+
+def squid(step, input_txt=None):
+    if step > 3:
+        step = 3
+    steps = [
     f"""
              #######              ############################################
           ###       ###          ##  Mr. Squid:
@@ -341,7 +349,15 @@ def num(num, input_txt=None):
    ##      ##  ##  ##      ##
      ##  ##    ##    ##  ##
        ##     #  #     ##
-    """,
+    """
+    ]
+
+    return steps[step]
+
+def ass(ass, input_txt=None):
+    if ass > 2:
+        ass = 2
+    asset = [
     """
                 ######
                  ####
@@ -380,4 +396,4 @@ def num(num, input_txt=None):
     """
     ]
 
-    return numbers[num]
+    return asset[ass]
