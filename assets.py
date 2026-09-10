@@ -400,7 +400,7 @@ def ass(ass, input_txt=None):
 
     return asset[ass]
 
-def ass(ass, input_txt=None):
+def map(ass, input_txt=None):
     gamedata = loader.load_gamefile()
     asset = []
     asset_counter = None

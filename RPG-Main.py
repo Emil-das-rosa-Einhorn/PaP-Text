@@ -116,7 +116,7 @@ def download_game (filename):
     loader.download_gamefile(filename)
     gamedata = loader.load_gamefile()
     story = gamedata["content"]
-    Character_profiles = gamedata["Character_profiles"]
+    Character_profiles = gamedata["character_profiles"]
     title = gamedata["titel"]
     game_version = gamedata["version"] 
 
@@ -128,7 +128,7 @@ def load_game_local ():
         return False
     else:
         story = gamedata["content"]
-        Character_profiles = gamedata["Character_profiles"]
+        Character_profiles = gamedata["character_profiles"]
         title = gamedata["titel"]
         game_version = gamedata["version"]
 
