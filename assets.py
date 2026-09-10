@@ -294,7 +294,12 @@ def num(num, input_txt=None):
     """
     ]
 
-    return numbers[num]
+    try:
+        return numbers[num]
+    except Exception as e:
+        print (e,"\n\nThe asset coud't be found")
+        return None
+
 
 def squid(step, input_txt=None):
     if step > 3:
@@ -353,8 +358,12 @@ def squid(step, input_txt=None):
        ##     #  #     ##
     """
     ]
+    try:
+        return steps[step]
+    except Exception as e:
+        print (e,"\n\nYour DM coud't be found")
+        return None
 
-    return steps[step]
 
 def ass(ass, input_txt=None):
     if ass > 2:
@@ -397,10 +406,13 @@ def ass(ass, input_txt=None):
         ############################
     """
     ]
+    try:
+        return asset[ass]
+    except Exception as e:
+         print (e,"\n\nThe asset coud't be found")
+         return None
 
-    return asset[ass]
-
-def map(ass, input_txt=None):
+def map(ass):
     gamedata = loader.load_gamefile()
     asset = []
     asset_counter = None
@@ -408,11 +420,12 @@ def map(ass, input_txt=None):
         for map in gamedata["map"]:
                 if asset_counter == None:
                         asset_counter = 0
-                asset.append(map)
-                asset_counter = asset_counter + 1
-        if ass > 2:
-                ass = 2
+                else:
+                        asset_counter = asset_counter + 1   
+                asset.append(gamedata["map"][map])
+        if ass > asset_counter:
+                ass = asset_counter
         return asset[ass]
     except Exception as e:
-         print (e,"\n\nLeider konnte keine Map gefunden werden.")
+         print (e,"\n\nThe asset coud't be found")
          return None
