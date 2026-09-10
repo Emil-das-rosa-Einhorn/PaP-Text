@@ -1,3 +1,5 @@
+import loader
+
 def num(num, input_txt=None):
     if num > 23:
         num = 23
@@ -397,3 +399,20 @@ def ass(ass, input_txt=None):
     ]
 
     return asset[ass]
+
+def ass(ass, input_txt=None):
+    gamedata = loader.load_gamefile()
+    asset = []
+    asset_counter = None
+    try:
+        for map in gamedata["map"]:
+                if asset_counter == None:
+                        asset_counter = 0
+                asset.append(map)
+                asset_counter = asset_counter + 1
+        if ass > 2:
+                ass = 2
+        return asset[ass]
+    except Exception as e:
+         print (e,"\n\nLeider konnte keine Map gefunden werden.")
+         return None
