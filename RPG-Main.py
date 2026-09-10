@@ -295,15 +295,7 @@ def say (type):
 
 def thinking_time(say_type=None):
     os.system("cls" if os.name == "nt" else "clear")
-    print (" ")
-    print (" ")
-    print ("=" * 50)
-    print (say (say_type))
-    for i in range(3):
-        dot = "." * (i + 1)
-        print(dot)
-        WT = random.randint(8, 15) / 10
-        sleep(ui_wait_time/3)
+    squid_say(say(say_type))
     os.system("cls" if os.name == "nt" else "clear")
 
 header = f"""
@@ -627,12 +619,15 @@ def load_in_character (charakter):
      Character_stats["Intelligence"] = Character_profiles[charakter]["Intelligence"]
      Character_stats["Charisma"] = Character_profiles[charakter]["Charisma"]
      Character_stats["Backstory"] = Character_profiles[charakter]["Backstory"]
-    
+
 def main():
     global current_scene
+    first_game = True
     try:
         while True:
-            menu_F()
+            if first_game:
+                menu_F()
+                first_game = False
             while True:
                 print ("Main Menu:")
                 menu()
