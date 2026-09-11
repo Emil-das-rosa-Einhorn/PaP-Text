@@ -3,7 +3,6 @@ test2.py
 gamefile.json
 info.json
 __pycache__
-*.txt
 *.log
 loader2.py
 RPG-Main2.py
