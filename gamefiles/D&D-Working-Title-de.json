@@ -1,7 +1,7 @@
 {
-    "version": "v1.0",
-    "titel": "der große Test",
-    "info": "das grosse Testspiel",
+    "version": "v0.0",
+    "titel": "Die Stadt der tausend Lichter",
+    "info": "In der Nacht des wichtigsten Feiertags von Abdalum steigen tausende Seelenfeuer über dem See Branduin auf. \nDoch schlagartig wird das Tal von einem dichten Nebel verschlungen: Sämtliche Bewohner verschwinden spurlos, und die Burg steht plötzlich völlig leer. \nMutterseelenallein musst du dich in die Stille der Nacht wagen, um herauszufinden, wohin dein Volk verschleppt wurde \nund stößt dabei auf ein dunkles Geheimnis aus längst vergangenen Zeiten.",
     "character_profiles": {
         "1": {
             "HP": 100,
