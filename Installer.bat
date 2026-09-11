@@ -18,7 +18,7 @@ echo.
 
 set "FOLDER_NAME=PaP-Adventure"
 set /p FOLDER_NAME="Choose the name of the Gamefolder (default: PaP-Adventure): "
-set "TARGET_DIR=%ProgramFiles%\%FOLDER_NAME%"
+set "TARGET_DIR=%LOCALAPPDATA%\%FOLDER_NAME%"
 
 echo.
 echo Zielordner: %TARGET_DIR%
@@ -26,7 +26,7 @@ echo.
 
 if not exist "%TARGET_DIR%" mkdir "%TARGET_DIR%"
 if not exist "%TARGET_DIR%\updates" mkdir "%TARGET_DIR%\updates"
-if not exist "%TARGET_DIR%\gamefile" mkdir "%TARGET_DIR%\gamefile"
+if not exist "%TARGET_DIR%\gamefiles" mkdir "%TARGET_DIR%\gamefile"
 
 where python >nul 2>nul
 if %errorlevel% neq 0 (
