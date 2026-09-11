@@ -16,7 +16,8 @@ echo         Game-Instalation-Skript (Windows)
 echo ============================================================
 echo.
 
-set /p FOLDER_NAME="Choose the name of the Gamefolder (z.B. PaP-Adventure): "
+set "FOLDER_NAME=PaP-Adventure"
+set /p FOLDER_NAME="Choose the name of the Gamefolder (default: PaP-Adventure): "
 set "TARGET_DIR=%ProgramFiles%\%FOLDER_NAME%"
 
 echo.
