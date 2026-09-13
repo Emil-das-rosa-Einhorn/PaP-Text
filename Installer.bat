@@ -26,7 +26,7 @@ echo.
 
 if not exist "%TARGET_DIR%" mkdir "%TARGET_DIR%"
 if not exist "%TARGET_DIR%\updates" mkdir "%TARGET_DIR%\updates"
-if not exist "%TARGET_DIR%\gamefiles" mkdir "%TARGET_DIR%\gamefiles"
+if not exist "%TARGET_DIR%\gamefiles" mkdir "%TARGET_DIR%\gamefile"
 
 where python >nul 2>nul
 if %errorlevel% neq 0 (
@@ -79,7 +79,8 @@ set /p CREATE_SHORTCUT="Do you want to create a Shortcut on the Desktop? (J/N): 
 
 if /i "%CREATE_SHORTCUT%"=="J" (
     echo Creating Shortcut...
-    powershell -Command "$desktop = [Environment]::GetFolderPath('Desktop'); $ws = New-Object -ComObject WScript.Shell; $sc = $ws.CreateShortcut(\"$desktop\%FOLDER_NAME%.lnk\"); $sc.TargetPath = '%TARGET_DIR%\start_game.bat'; $sc.WorkingDirectory = '%TARGET_DIR%'; $sc.Save()"
+    powershell -Command "Invoke-WebRequest -Uri '%RAW_BASE_URL%/Game_icon.ico' -OutFile '%TARGET_DIR%\Game_icon.ico'"
+    powershell -Command "$desktop = [Environment]::GetFolderPath('Desktop'); $ws = New-Object -ComObject WScript.Shell; $sc = $ws.CreateShortcut(\"$desktop\%FOLDER_NAME%.lnk\"); $sc.TargetPath = '%TARGET_DIR%\start_game.bat'; $sc.WorkingDirectory = '%TARGET_DIR%'; $sc.IconLocation = '%TARGET_DIR%\Game_icon.ico'; $sc.Save()"
     echo [OK] shortcut created.
 ) else (
     echo No shortcut created.
