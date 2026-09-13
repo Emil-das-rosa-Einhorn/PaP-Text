@@ -1,5 +1,10 @@
 import loader
 
+version = "v0.0.0"
+
+def get_version():
+     return version
+
 def num(num, input_txt=None):
     if num > 23:
         num = 23
