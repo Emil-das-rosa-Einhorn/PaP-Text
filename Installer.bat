@@ -26,7 +26,7 @@ echo.
 
 if not exist "%TARGET_DIR%" mkdir "%TARGET_DIR%"
 if not exist "%TARGET_DIR%\updates" mkdir "%TARGET_DIR%\updates"
-if not exist "%TARGET_DIR%\gamefiles" mkdir "%TARGET_DIR%\gamefile"
+if not exist "%TARGET_DIR%\gamefiles" mkdir "%TARGET_DIR%\gamefiles"
 
 where python >nul 2>nul
 if %errorlevel% neq 0 (
