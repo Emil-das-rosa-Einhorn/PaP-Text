@@ -1,4 +1,4 @@
-main_version = "v2.0.0"
+main_version = "v2.2.0"
 import random
 from time import sleep
 import loader
@@ -57,45 +57,58 @@ def check_updater():
     global update_available
     outofdate = []
     check, update_info = loader.load_update_info()
-    cur_l_version = loader.get_version()
-    cur_m_version = main_version
-    r = False
-    try:
-        if cur_l_version != update_info["loader"]["version"]:
-            r = True
-            outofdate.append("loader")
-        else:
-            pass
+    if check:
+        cur_l_version = loader.get_version()
+        cur_m_version = main_version
+        cur_ass_version = ass.get_version()
+        r = False
+        try:
+            if cur_l_version != update_info["loader"]["version"]:
+                r = True
+                outofdate.append("loader")
+            else:
+                pass
 
-        if cur_m_version != update_info["main"]["version"]:
-            r = True
-            outofdate.append("main")
-        else:
-            pass
+            if cur_m_version != update_info["main"]["version"]:
+                r = True
+                outofdate.append("main")
+            else:
+                pass
+            if cur_ass_version != update_info["assets"]["version"]:
+                r = True
+                outofdate.append("assets")
+            else:
+                pass
 
-        if update_info["updater"]["version"] != suported_updater:
-            r = True
-            outofdate.append("updater")
+            if update_info["updater"]["version"] != suported_updater:
+                r = True
+                outofdate.append("updater")
 
-        if r:
-            update_available = True
-            return True, outofdate
-        else:
-            update_available = False
+            if r:
+                update_available = True
+                return True, outofdate
+            else:
+                update_available = False
+                return False, outofdate
+            
+        except Exception as e:
             return False, outofdate
-        
-    except Exception as e:
-        return False, outofdate
+    else:
+        outofdate = ["Unable"]
+        return True,outofdate
 
 
 def lounch_updater (outofdate):
     loader_up = "False"
     main_up = "False"
+    ass_up = "False"
     for skript in outofdate:
         if skript == "loader":
             loader_up = "True"
         elif skript == "main":
             main_up = "True"
+        elif skript == "assets":
+            ass_up = "True"
 
     with open("updater.log", "w", encoding="utf-8") as log:
         subprocess.Popen(
@@ -103,7 +116,8 @@ def lounch_updater (outofdate):
                 sys.executable,
                 "updater.py",
                 loader_up,
-                main_up
+                main_up,
+                ass_up
             ],
             stdout=log,
             stderr=log,
@@ -113,12 +127,20 @@ def lounch_updater (outofdate):
 
 def download_game (filename):
     global story, Character_profiles, title, game_version
-    loader.download_gamefile(filename)
-    gamedata = loader.load_gamefile()
-    story = gamedata["content"]
-    Character_profiles = gamedata["character_profiles"]
-    title = gamedata["titel"]
-    game_version = gamedata["version"] 
+    status, error_msg = loader.download_gamefile(filename)
+    if status:
+        print (error_msg)
+        gamedata = loader.load_gamefile()
+        story = gamedata["content"]
+        Character_profiles = gamedata["character_profiles"]
+        title = gamedata["titel"]
+        game_version = gamedata["version"]
+        sleep(ui_wait_time)
+    else:
+        print("unable to load Gamefile")
+        sleep(ui_wait_time)
+        print(error_msg)
+        sleep(ui_wait_time)
 
 def load_game_local ():
     global story, Character_profiles, title, game_version
@@ -218,84 +240,9 @@ def roll_dice(sides=6):
     dice_animation(sides, result)
     return result
 
-def say (type):
-    if type == "thinking":
-        say = ["Let me think about that...",
-               "Hmm, that's a tough one...",
-               "I need to consider my options...",
-               "This is a difficult decision...",
-               "I need to weigh the pros and cons..."]
-    elif type == "success":
-        say = ["Great choice!",
-               "That was a smart move!",
-               "You made the right decision!",
-               "Well done!",
-               "Excellent choice!"]
-    elif type == "failure":
-        say = ["Oh no, that didn't work out.",
-               "That was a risky move.",
-               "Unfortunately, that didn't go as planned.",
-               "Better luck next time.",
-               "That choice didn't pay off."]
-    elif type == "name":
-        say = ["Thats a great name!",
-                "hmm, I like that name.",
-                "Interesting choice for a name.",
-                "I wouldn't choose that name if I were you... but it could work.",
-                "OK, I guess that name will do."]
-    elif type == "dice_low":
-        say = ["Oh no, that dosen't look good.",
-                "hmm, i hope that works out for you.",
-                "This might be a tough situation.",
-                "Wow, that is a low roll. Good luck!",
-                "it dons't go way lower than that, but it could be worse."]
-    elif type == "dice_high":
-        say = ["WOW, that is a high roll!",
-                "keep it up, you are doing great!",
-                "...This is a fantastic roll!",
-                "Now this is what I call a lucky roll!",
-                "You are on a roll!"]
-    elif type == "dice_mid":
-        say = ["That's a decent roll.",
-                "Not bad!",
-                "Could be better, but not terrible.",
-                "A solid performance.",
-                "You're doing alright.",
-                "it could be worse!"]
-    elif type == "dice_krit_suc":
-        say = ["WOW, that is a critical success!",
-                "Wow what a lucky roll!",
-                "As high as it gets! This is a fantastic roll!",
-                "Oh great, I wish I could roll like that!",
-                "Kritical success!",
-                "It couldn't go much better!"]
-    elif type == "dice_krit_fail":
-        say = ["Oh not good, really not good.",
-                "this is a fail!",
-                "Oh no, that didn't work out.",
-                "That was risky and it didn't pay off.",
-                "This is a tough situation.",
-                "Better luck next time."]
-    elif type == "END_suc":
-        say = ["Oh Wow, that was a great outcome!",
-                "You made the right decisions!",
-                "i hope you have the same luck next time!"]
-    elif type == "END_fail":
-        say = ["Oh no, what a terible outcome!",
-                "You put your hopes on your not existing luck!",
-                "That was a skill issue, i would say!"]
-    elif type == "END_mid":
-        say = ["That could have gone better. But also much worse.",
-                "Well, that was a ride. For the future, may try thinking, befor moving.",
-                "You made some good choices, but also some questionable ones. But you got yourself out of the situation, so that's something."]
-    else:
-        say = ["I'm not sure what to say."]
-    msg = "DM: " + random.choice(say)
-    return msg
-
 def thinking_time(say_type=None):
     os.system("cls" if os.name == "nt" else "clear")
-    squid_say(say(say_type))
+    squid_say(ass.say(say_type))
     os.system("cls" if os.name == "nt" else "clear")
 
 header = f"""
@@ -325,7 +272,7 @@ def menu_F():
                         print ("-"*50)
                         print ("A: Manual for the Update")
                         print ("B: Update now")
-                        print ("C: Exit [not recommended]")
+                        print ("X: Exit [not recommended]")
                         choice = input ("Please chose an Option: ").upper()
                         if choice == "A":
                             while True:
@@ -334,7 +281,7 @@ def menu_F():
                                 print (repl_man)
                                 print ("-"*50)
                                 print ("A: Update now")
-                                print ("B: Exit")
+                                print ("X: Exit")
                                 print ("-"*50)
                                 choice = input ("Please chose an Option: ").upper()
                                 if choice == "A":
@@ -342,7 +289,7 @@ def menu_F():
                                     print ("Game will be closed...")
                                     sleep(ui_wait_time)
                                     sys.exit(0)
-                                elif choice == "B":
+                                elif choice == "X":
                                     break
                                 else:
                                     print("choose a valid option")
@@ -352,7 +299,7 @@ def menu_F():
                             print ("Game will be closed...")
                             sleep(ui_wait_time)
                             sys.exit(0)
-                        elif choice == "C":
+                        elif choice == "X":
                             while True:
                                 os.system("cls" if os.name == "nt" else "clear")
                                 print ("By not updating the skript, you run the rist of corrupting your game and or gamefiles")
@@ -366,23 +313,29 @@ def menu_F():
                                     print ("choose valid option")
                                     sleep (ui_wait_time)
 
-
-            print ("There is a new Update")
-            print (f"This files will be Updated: {outofdate}")
-            print ("-"*50)
-            print ("A: Update Game")
-            print ("B: Exit")
-            print ("-"*50)
-            choice = input ("Please chose an Option: ").upper()
-            if choice == "A":
-                lounch_updater(outofdate)
-                break
-            elif choice == "B":
+            if outofdate == ['Unable']:
+                print ("Unable to reach the Update information")
+                print (f"Please check yout Internet connection.")
+                input (f"To Play Offline, press any key to continue Playing")
+                print ("-"*50)
                 break
             else:
-                os.system("cls" if os.name == "nt" else "clear")
-                print ("Please choose a valid option")
-                sleep (ui_wait_time)
+                print ("There is a new Update")
+                print (f"This files will be Updated: {outofdate}")
+                print ("-"*50)
+                print ("A: Update Game")
+                print ("X: Exit")
+                print ("-"*50)
+                choice = input ("Please chose an Option: ").upper()
+                if choice == "A":
+                    lounch_updater(outofdate)
+                    break
+                elif choice == "X":
+                    break
+                else:
+                    os.system("cls" if os.name == "nt" else "clear")
+                    print ("Please choose a valid option")
+                    sleep (ui_wait_time)
         os.system("cls" if os.name == "nt" else "clear")
     else:
         os.system("cls" if os.name == "nt" else "clear")
@@ -391,6 +344,7 @@ def menu_F():
         os.system("cls" if os.name == "nt" else "clear")
 
 def menu ():
+    global Character_stats
     while True:
         if update_available:
             uda = "[new Update]"
@@ -456,6 +410,46 @@ def menu ():
                 print ("please select a Game first")
                 sleep(ui_wait_time)
                 os.system("cls" if os.name == "nt" else "clear")
+            elif Character_stats["HP"] == None:
+                print ("please select a Character first:")
+                print ("A: Choose Character")
+                print ("X: Play anyway (charakter stats will be Randomised)")
+                choice = input("Please chose an Option: ").upper()
+                if choice == "A":
+                    menu_C()
+                elif choice == "X":
+                    os.system("cls" if os.name == "nt" else "clear")
+                    Character_stats = {
+                        "HP": random.randint(30, 100),
+                        "EP": random.randint(30, 100),
+                        "Strength": random.randint(1, 5),
+                        "Constitution": random.randint(1, 5),
+                        "Dexterity": random.randint(1, 5),
+                        "Wisdom": random.randint(1, 5),
+                        "Intelligence": random.randint(1, 5),
+                        "Charisma": random.randint(1, 5),
+                        "Backstory": "You woke up with out any memory.\nYou dont know anything of your past."
+                        }
+                    print("Your Charakter:")
+                    print("")
+                    print(f"Name: {Name}")
+                    print(f"HP: {Character_stats["HP"]}")
+                    print(f"EP: {Character_stats["EP"]}")
+                    print(f"Strength: {Character_stats["Strength"]}")
+                    print(f"Constitution: {Character_stats["Constitution"]}")
+                    print(f"Dexterity: {Character_stats["Dexterity"]}")
+                    print(f"Wisdom: {Character_stats["Wisdom"]}")
+                    print(f"Intelligence: {Character_stats["Intelligence"]}")
+                    print(f"Charisma: {Character_stats["Charisma"]}")
+                    print(f"Backstory: {Character_stats["Backstory"]}")
+                    print("")
+                    print ("-"*50)
+                    input("press any key to continues")
+                    os.system("cls" if os.name == "nt" else "clear")
+                    break
+                else:
+                    print("going back to Main-Menu")
+                    sleep(ui_wait_time)
             else:
                 break
 
@@ -513,17 +507,17 @@ def menu_B():
             print ("-"*50)
             print ("")
             game_counter = game_counter + 1
-        print ("Press E to go back to the Menu")
+        print ("Press X to go back to the Menu")
         print (footer)
-        filename = input ("Please type in the Game you want to Play: ")
-        if filename == "E" or filename == "e":
+        filename = input ("Please type the Title of the Game you want to Play (without the Version): ")
+        if filename == "X" or filename == "x":
             break
         elif filename in gamelist:
             download_game(filename)
             break
         else:
             os.system("cls" if os.name == "nt" else "clear")
-            print ("Please select one of the Games or press E to go back to the Menu")
+            print ("Please select one of the Games or press X to go back to the Menu")
             sleep(ui_wait_time)
 
 
@@ -548,14 +542,13 @@ def menu_C():
         print ("-"*50)
         print ("A: Character Name")
         print ("B: Character Profile")
-        print ("C: Exit")
+        print ("X: Exit")
         print (footer)
         choice = input ("Please chose an Option: ").upper()
         os.system("cls" if os.name == "nt" else "clear")
         if choice == "A":
             Name = input ("Please Typ in your Charakter Name: ")
-            print (say("name"))
-            sleep (ui_wait_time)
+            thinking_time("name")
             os.system("cls" if os.name == "nt" else "clear")
         elif choice == "B":
             while True:
@@ -577,8 +570,8 @@ def menu_C():
                     print (f"Backstory: {Character_profiles[key]["Backstory"]}")
                     print ("-"*50)
                 print ("A: Chose a Character")
-                print ("B: Random")
-                print ("C: Exit")
+                print ("B: Roll for your Character")
+                print ("X: Exit")
                 choice = input("Please select a Option: ").upper()
                 os.system("cls" if os.name == "nt" else "clear")
                 if choice == "A":
@@ -593,10 +586,19 @@ def menu_C():
                         sleep (ui_wait_time)
                 elif choice == "B":
                     charakter = random.choice(char_numbers)
-                    load_in_character (charakter)
+                    char_counter = 0
+                    for _ in char_numbers:
+                        char_counter = char_counter + 1
+                    try:
+                        dice_animation(char_counter,int(charakter))
+                        load_in_character (charakter)
+                    except Exception as e:
+                        print (f"ERROR: {e}")
+                        load_in_character (charakter)
+                        sleep (10)
                     os.system("cls" if os.name == "nt" else "clear")
                     break
-                elif choice == "C":
+                elif choice == "X":
                     os.system("cls" if os.name == "nt" else "clear")
                     break
                 else:
@@ -605,7 +607,7 @@ def menu_C():
                     print ("Chose your Character by typing in the Character Number")
                     sleep (ui_wait_time)
 
-        elif choice == "C":
+        elif choice == "X":
             break
         else:
             print ("Please select a Option")
@@ -634,7 +636,6 @@ def main():
             while True:
                 print ("Main Menu:")
                 menu()
-                input ("Press Enter to start the adventure...")
                 break
             while True:
                 try:
