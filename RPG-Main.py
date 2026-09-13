@@ -507,7 +507,9 @@ def menu_B():
         game_counter = 0
         for game in gamelist:
             print (f"Title: {game} | {game_version[game_counter]}")
+            print ("")
             print (f"Info: {game_infos[game_counter]}")
+            print ("")
             print ("-"*50)
             game_counter = game_counter + 1
         print ("Press E to go back to the Menu")
