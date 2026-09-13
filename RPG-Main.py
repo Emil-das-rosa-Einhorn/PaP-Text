@@ -511,6 +511,7 @@ def menu_B():
             print (f"Info: {game_infos[game_counter]}")
             print ("")
             print ("-"*50)
+            print ("")
             game_counter = game_counter + 1
         print ("Press E to go back to the Menu")
         print (footer)
